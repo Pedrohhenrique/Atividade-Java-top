@@ -4,6 +4,7 @@ import ch.qos.logback.core.net.server.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,5 +30,9 @@ public class Controller {
     @DeleteMapping("/id")
     public void  deleteCliente(@PathVariable Long id){
         resposity.deleteById(id);
+    }
+    @GetMapping
+    public List<Cliente> listClientes(){
+        return resposity.findAll();
     }
 }
