@@ -35,8 +35,15 @@ public class Controller {
     public List<Cliente> listClientes(){
         return resposity.findAll();
     }
-    @PutMapping()
-    public Cliente updateClienteById(ClienteDTO cliteDto, @PathVariable Long id){
-
+    @PutMapping("/atualize/{id}")
+    public String updateClienteById(ClienteDTO clienteDTO, @PathVariable Long id){
+     Optional<Cliente> velhoCliente = resposity.findById(id);
+     if(velhoCliente.isPresent()){
+        Cliente cliente = velhoCliente.get();
+        cliente.setEndereco(clienteDTO.getEndereco());
+        return "Cliente de id" + cliente.getId() + "   autualizado com sucesso!";
+     }else{
+            return "cliente de id" + id + "não existe!";
+         }
     }
 }
