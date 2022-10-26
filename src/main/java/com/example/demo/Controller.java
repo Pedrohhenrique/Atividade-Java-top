@@ -35,4 +35,8 @@ public class Controller {
     public List<Cliente> listClientes(){
         return resposity.findAll();
     }
+    @PutMapping()
+    public Cliente updateClienteById(ClienteDTO cliteDto, @PathVariable Long id){
+
+    }
 }
