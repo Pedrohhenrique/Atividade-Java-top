@@ -1,9 +1,6 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,10 +11,7 @@ public class Cliente
     private Long id;
     private String nome;
     private String endereco;
-
-    public Cliente(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
+    @OneToMany
 
     private List<Produto> produtos;
 
