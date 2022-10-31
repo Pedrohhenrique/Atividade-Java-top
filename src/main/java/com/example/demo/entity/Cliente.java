@@ -11,8 +11,7 @@ public class Cliente
     private Long id;
     private String nome;
     private String endereco;
-    @OneToMany
-
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Produto> produtos;
 
     public Cliente()
