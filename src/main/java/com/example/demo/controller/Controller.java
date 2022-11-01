@@ -16,7 +16,6 @@ public class Controller {
 
     @Autowired
     Repository resposity;
-
     @PostMapping
     public Cliente create(@RequestBody Cliente cliente)
     {
@@ -30,8 +29,21 @@ public class Controller {
         return clienteReturned;
     }
     @DeleteMapping("/id")
-    public void  deleteCliente(@PathVariable Long id){
-        resposity.deleteById(id);
+    public String  deleteCliente(@PathVariable Long id){
+        try{
+            Optional<Cliente> cliente = Optional.of(resposity.getById(id));
+
+            if(cliente.isPresent()){
+                resposity.deleteById(id);
+                return "Cliente de " + id +" deletado com sucesso!";
+            }else{
+                throw new Exception();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return "O cliente de" +id + " Não existe para ser deletado!"+
+                    " Por favor, entre em contato com o atendimento 231 546 884";
+        }
     }
     @GetMapping
     public List<Cliente> listClientes(){
